@@ -1,0 +1,554 @@
+/* ==============================================
+   GLOBAL / BASE STYLES
+   ============================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+button,
+input,
+textarea,
+select {
+  transition: background-color 0.2s ease, color 0.2s ease, border 0.2s ease;
+}
+
+/* ==============================================
+   HEADER
+   ============================================== */
+.header {
+  position: relative;
+  background-color: #1e1e1e;
+  padding: 15px 0;
+  text-align: center;
+  border-bottom: 1px solid #2c2c2c;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 8px;
+  vertical-align: middle;
+  filter: brightness(0) saturate(100%) invert(59%) sepia(100%) saturate(2287%) hue-rotate(359deg) brightness(101%) contrast(105%);
+}
+
+.header h1 {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ==============================================
+   FOOTER
+   ============================================== */
+.footer {
+  background-color: #1e1e1e;
+  padding: 15px 20px;
+  text-align: center;
+  border-top: 1px solid #2c2c2c;
+  margin-top: 0;
+  color: #b0b0b0;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  color: #ff8c00;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: #ffd8a6;
+}
+
+.footer p span.eu {
+  font-weight: bold;
+  color: #ff8c00;
+}
+
+/* ==============================================
+   MAIN CONTENT & MAP
+   ============================================== */
+.main {
+  padding: 20px;
+}
+
+.map-container {
+  position: relative;
+  height: 800px; /* Fixed height for the map */
+  width: calc(100% - 40px); /* Account for uniform 20px margin on left & right */
+  margin: 20px;
+  border: 1px solid #2c2c2c;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* ==============================================
+   OVERLAY FILTER PANEL (Centered at Top)
+   ============================================== */
+.filter-panel {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4000;
+  background: rgba(30, 30, 30, 0.8);
+  padding: 10px;
+  border: 1px solid #2c2c2c;
+  border-radius: 4px;
+}
+
+.filter-panel label {
+  display: inline-block;
+  margin-right: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #e0e0e0;
+}
+
+/* ==============================================
+   OVERLAY SEARCH CONTAINER (Centered at Bottom)
+   ============================================== */
+.search-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4000;
+  background: #1e1e1e;
+  border: 1px solid #2c2c2c;
+  border-radius: 4px;
+  padding: 15px;
+  max-width: 500px;
+}
+
+.search-container h2 {
+  color: #ff8c00;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.search-container input {
+  width: calc(100% - 100px);
+  padding: 8px;
+  margin-right: 10px;
+  background-color: #1e1e1e;
+  border: 1px solid #2c2c2c;
+  color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.search-container button {
+  width: 80px;
+  padding: 8px;
+  background-color: #ff8c00;
+  color: #1e1e1e;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #ffaa33;
+}
+
+/* ==============================================
+   FORMS
+   ============================================== */
+form {
+  margin-bottom: 20px;
+}
+
+form input,
+form textarea,
+form button,
+form select {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #2c2c2c;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-radius: 4px;
+}
+
+form button {
+  cursor: pointer;
+  background-color: #ff8c00;
+  color: #1e1e1e;
+  font-weight: 600;
+}
+
+form button:hover {
+  background-color: #ffaa33;
+}
+
+/* ==============================================
+   MODAL STYLES
+   ============================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10000;  /* Ensure this is higher than the hamburger menu and map */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal-content {
+  background: #2a2a2a;
+  padding: 25px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: #e0e0e0;
+  position: relative;
+  animation: fadeIn 0.3s forwards;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content h2 {
+  color: #ff8c00;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.modal-content label {
+  display: block;
+  margin: 15px 0 5px;
+  font-weight: 600;
+  color: #bbb;
+}
+
+.modal-content input,
+.modal-content textarea {
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  background-color: #353535;
+  border-color: #ff8c00;
+  outline: none;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-buttons button {
+  background: #ff8c00;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  color: #1e1e1e;
+  font-weight: 600;
+  border-radius: 4px;
+  min-width: 90px;
+}
+
+.modal-buttons button:hover {
+  background-color: #ffaa33;
+}
+
+/* ==============================================
+   HAMBURGER MENU (RIGHT-SIDE, FULL HEIGHT, FADE)
+   ============================================== */
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.hamburger-button {
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  color: #ff8c00;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 1010;
+  transition: transform 0.3s ease;
+}
+
+.hamburger-button:hover {
+  transform: scale(1.1);
+}
+
+.menu-content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: #1e1e1e;
+  border-left: 1px solid #2c2c2c;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.5);
+  color: #e0e0e0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-content.visible {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Menu Sections & Grouping */
+.menu-section {
+  margin-bottom: 20px;
+}
+
+.menu-heading {
+  margin-top: 16px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #2c2c2c;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ff8c00;
+}
+
+.date-group {
+  margin-left: 12px;
+  margin-bottom: 10px;
+}
+
+.date-heading {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+/* List Items */
+.activity-item,
+.hotel-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 4px 6px;
+  transition: background-color 0.2s ease;
+}
+
+.activity-item:hover,
+.hotel-item:hover {
+  background-color: #2a2a2a;
+}
+
+.item-name {
+  margin-right: auto;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+}
+
+/* ==============================================
+   INFO ICON STYLE (Subtle, inline)
+   ============================================== */
+.info-icon {
+  font-size: 1.1rem;
+  color: #ff8c00;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.info-icon:hover {
+  color: #ffaa33;
+  transform: scale(1.1);
+}
+
+/* ==============================================
+   LEAFLET POPUP (ANY ITEM) DARK STYLES
+   ============================================== */
+.leaflet-popup-content-wrapper {
+  background-color: #2b2b2b !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #444 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+}
+
+.leaflet-popup-tip {
+  background: #2b2b2b !important;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  padding: 15px !important;
+  text-align: left;
+  width: auto;
+  max-width: 350px;
+  font-size: 0.95rem;
+}
+
+.leaflet-popup-content h3 {
+  color: #ff8c00;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.leaflet-popup-content button {
+  background-color: #ff8c00;
+  color: #1e1e1e;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 5px;
+}
+
+.leaflet-popup-content button:hover {
+  background-color: #ffaa33;
+}
+
+/* Dark mode styling for Leaflet attribution */
+.leaflet-control-attribution {
+  background: rgba(30, 30, 30, 0.8) !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #2c2c2c !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+  font-size: 0.75rem !important;
+}
+
+.leaflet-control-attribution a {
+  color: #ff8c00 !important;
+  text-decoration: none;
+}
+
+.leaflet-control-attribution a:hover {
+  color: #ffaa33 !important;
+}
+
+
+.map-icon {
+  font-size: 1.1rem;
+  color: #ff8c00;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.map-icon:hover {
+  color: #ffaa33;
+  transform: scale(1.1);
+}
+
+.menu-content .hotel-item span[style*="cursor: pointer"],
+.menu-content .activity-item span[style*="cursor: pointer"] {
+  font-size: 1.1rem;
+  color: #ff8c00;
+  margin-left: 4px;
+}
+.menu-content .hotel-item span[style*="cursor: pointer"]:hover,
+.menu-content .activity-item span[style*="cursor: pointer"]:hover {
+  color: #ffaa33;
+  transform: scale(1.1);
+}
+
+.open-marker-icon {
+  font-size: 1.1rem;
+  color: #ff8c00;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.open-marker-icon:hover {
+  color: #ffaa33;
+  transform: scale(1.1);
+}
+
+
+
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #2c2c2c;
+  border-radius: 4px;
+}
+
