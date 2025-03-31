@@ -21,8 +21,6 @@ Features:
 
 -   Weather Information: View current weather data at specific locations.
 
--   German Date Formatting: All dates are formatted in the German style.
-
 -   Dark Theme: Modern, responsive design with dark mode and orange accents.
 
 -   Open Source: Licensed under the GPL‑3.0 License.
